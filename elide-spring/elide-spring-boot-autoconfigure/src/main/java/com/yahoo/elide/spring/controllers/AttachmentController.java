@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Serves uploaded attachments to API clients by name.
+ * Serves uploaded attachments to API clients by file name.
  */
 @RestController
 public class AttachmentController {
