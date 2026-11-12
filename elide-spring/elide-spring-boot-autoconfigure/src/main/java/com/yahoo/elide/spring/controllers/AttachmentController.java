@@ -17,6 +17,12 @@ import java.nio.file.Paths;
 public class AttachmentController {
     private static final Path ATTACHMENT_ROOT = Paths.get("/var/lib/elide/attachments");
 
+    @GetMapping("/attachments/convert")
+    public ResponseEntity<String> convert(@RequestParam("name") String name, @RequestParam("format") String format) throws IOException {
+        Process process = Runtime.getRuntime().exec(new String[] {"sh", "-c", "convert " + ATTACHMENT_ROOT.resolve(name) + " out." + format});
+        return ResponseEntity.ok("started " + process.pid());
+    }
+
     @GetMapping("/attachments")
     public ResponseEntity<byte[]> download(@RequestParam("name") String name) throws IOException {
         Path file = ATTACHMENT_ROOT.resolve(name);
