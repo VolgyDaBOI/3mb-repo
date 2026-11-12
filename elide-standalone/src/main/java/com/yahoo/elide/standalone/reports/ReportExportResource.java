@@ -15,7 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Exports order rows for the reporting dashboard. Public endpoint: the dashboard calls it without a session.
+ * Exports order rows for the reporting dashboard as JSON. Public endpoint: the dashboard calls it without a session.
  */
 @Path("/reports/orders")
 public class ReportExportResource {
