@@ -39,4 +39,12 @@ public class ExportController {
     public byte[] file(@RequestParam String name) throws Exception {
         return Files.readAllBytes(EXPORT_ROOT.resolve(name));
     }
+
+    @GetMapping("/export/count")
+    public int count(@RequestParam String owner) throws Exception {
+        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
+            ResultSet rows = statement.executeQuery("SELECT count(*) FROM reports WHERE owner = '" + owner + "'");
+            return rows.next() ? rows.getInt(1) : 0;
+        }
+    }
 }
